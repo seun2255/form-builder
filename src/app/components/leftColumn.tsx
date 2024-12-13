@@ -3,6 +3,8 @@ import Image from "next/image";
 import { useSelector, useDispatch } from "react-redux";
 import { setStepDisplay } from "../redux/app";
 import { useStep } from "../hooks";
+import IndeterminateCheckBoxIcon from "@mui/icons-material/IndeterminateCheckBox";
+import AddBoxIcon from "@mui/icons-material/AddBox";
 
 export default function LeftColumn() {
   const { exports, step } = useSelector((state: any) => state.app);
@@ -45,7 +47,12 @@ export default function LeftColumn() {
               <span className="font-bold text-[16px] leading-[19.36px]">
                 {item.step}
               </span>
-              <Image
+              {step === index ? (
+                <IndeterminateCheckBoxIcon sx={{ height: 32, width: 32 }} />
+              ) : (
+                <AddBoxIcon sx={{ height: 32, width: 32 }} />
+              )}
+              {/* <Image
                 src={
                   step === index
                     ? "/images/minus-square.svg"
@@ -54,7 +61,7 @@ export default function LeftColumn() {
                 alt="box icon"
                 width={32}
                 height={32}
-              />
+              /> */}
             </button>
             {step === index && (
               <div className="pt-[17px] pb-[100px] w-full px-[24px] flex flex-col gap-[10px] align-middle">
