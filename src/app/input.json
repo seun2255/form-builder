@@ -1,0 +1,79 @@
+{
+  "data": [
+    {
+      "step": "Personal Informtion",
+      "elements": [
+        {
+          "id": 1,
+          "description": "John Doe",
+          "title": "Name",
+          "type": "input"
+        },
+        {
+          "id": 2,
+          "description": "How old are you",
+          "title": "Age",
+          "type": "input"
+        },
+        {
+          "id": 3,
+          "description": "something avenue",
+          "title": "Address",
+          "type": "upload input"
+        }
+      ],
+      "open": false
+    },
+    {
+      "step": "Professional Informtion",
+      "elements": [
+        {
+          "id": 1,
+          "description": "John Doe",
+          "title": "Name",
+          "type": "input"
+        },
+        {
+          "id": 2,
+          "description": "How old are you",
+          "title": "Age",
+          "type": "input"
+        },
+        {
+          "id": 3,
+          "description": "something avenue",
+          "title": "Address",
+          "type": "upload input"
+        }
+      ],
+      "open": false
+    },
+    {
+      "step": "Questions",
+      "elements": [
+        {
+          "id": 1,
+          "description": "cook",
+          "title": "Do you cook?",
+          "type": "selection",
+          "values": ["yes", "no"]
+        },
+        {
+          "id": 2,
+          "description": "party",
+          "title": "do you party?",
+          "type": "selection",
+          "values": ["yes", "no"]
+        },
+        {
+          "id": 3,
+          "description": "dance",
+          "title": "do you dance?",
+          "type": "selection",
+          "values": ["rarely", "no", "often"]
+        }
+      ],
+      "open": false
+    }
+  ]
+}

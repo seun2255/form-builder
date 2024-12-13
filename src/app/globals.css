@@ -2,6 +2,22 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 400;
+  src: url("https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iNls3vDqHmjQ.woff2")
+    format("woff2");
+}
+
+@font-face {
+  font-family: "Inter";
+  font-style: normal;
+  font-weight: 700;
+  src: url("https://fonts.gstatic.com/s/inter/v13/UcC73FwrK3iNls3vDqHmjQ700.woff2")
+    format("woff2");
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -14,8 +30,48 @@
   }
 }
 
+* {
+  margin: 0;
+}
+
 body {
   color: var(--foreground);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Inter", Arial, Helvetica, sans-serif;
+}
+
+@layer components {
+  .sp {
+    width: 86px;
+    height: 86px;
+    clear: both;
+    margin: 20px auto;
+  }
+
+  /* Spinner Circle Rotation */
+  .sp-circle {
+    border: 10px black solid;
+    border-top: 10px white solid;
+    border-right: 10px white solid;
+    border-radius: 50%;
+    -webkit-animation: spCircRot 0.6s infinite linear;
+    animation: spCircRot 1.4s infinite linear;
+  }
+
+  @-webkit-keyframes spCircRot {
+    from {
+      -webkit-transform: rotate(0deg);
+    }
+    to {
+      -webkit-transform: rotate(359deg);
+    }
+  }
+  @keyframes spCircRot {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }
 }
