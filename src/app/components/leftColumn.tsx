@@ -52,16 +52,6 @@ export default function LeftColumn() {
               ) : (
                 <AddBoxIcon sx={{ height: 32, width: 32 }} />
               )}
-              {/* <Image
-                src={
-                  step === index
-                    ? "/images/minus-square.svg"
-                    : "/images/plus-square.svg"
-                }
-                alt="box icon"
-                width={32}
-                height={32}
-              /> */}
             </button>
             {step === index && (
               <div className="pt-[17px] pb-[100px] w-full px-[24px] flex flex-col gap-[10px] align-middle">

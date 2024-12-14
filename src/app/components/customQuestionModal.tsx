@@ -16,7 +16,8 @@ export default function CustomQuestionModal() {
         id: exports[step].elements.length + 1,
         description: "a textarea",
         title: title,
-        type: "textarea",
+        inputs: [
+          { type: "textarea", name: title }],
       };
 
       onSelectItem(element);

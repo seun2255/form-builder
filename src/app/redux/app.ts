@@ -1,8 +1,13 @@
 import { createSlice } from "@reduxjs/toolkit";
 import JsonData from "../input.json";
 
+const processedJsonData = JsonData.data.map((item) => ({
+  ...item,
+  open: false,
+}));
+
 const initialState = {
-  data: JsonData.data,
+  data: processedJsonData,
   customQuestions: [
     {
       step: "Personal Informtion",

@@ -4,13 +4,19 @@ import FormPreview from "../components/formPreview";
 import { useSelector } from "react-redux";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { json } from "stream/consumers";
 
 export default function Preview() {
   const { exports } = useSelector((state: any) => state.app);
   const [step, setStep] = useState(0);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [formState, setFormState] = useState<any>({
+    "Personal Informtion": {},
+    "Professional Informtion": {},
+    Questions: {},
+  });
 
   const handleNext = () => {
     if (step === 2) {
@@ -24,6 +30,26 @@ export default function Preview() {
     }
   };
 
+  useEffect(() => {
+    const form = { ...formState };
+    exports.map((step: any) => {
+      form[step.step] = {};
+      step.elements.map((element: any) => {
+        form[step.step][element.title] = {};
+        element.inputs.map((input: any) => {
+          if (input.type === "file") {
+            form[step.step][element.title][input.name] = [];
+          } else if (input.type === "selection") {
+            form[step.step][element.title][input.name] = input.values[0];
+          } else {
+            form[step.step][element.title][input.name] = "";
+          }
+        });
+      });
+    });
+    setFormState(form);
+  }, []);
+
   return (
     <div className="w-screen h-screen bg-[#D9D9D9] flex items-center justify-center">
       <div className="w-[1068px] h-[772px] rounded-[20px] bg-white border-[1px] border-[#CCCCCC] flex p-[18px] pr-[50px] gap-[100px]">
@@ -36,7 +62,13 @@ export default function Preview() {
               {exports.map((form: any, index: number) => {
                 if (step === index) {
                   return (
-                    <FormPreview key={index} formData={form} page={index} />
+                    <FormPreview
+                      key={index}
+                      formData={form}
+                      page={index}
+                      form={formState}
+                      setForm={setFormState}
+                    />
                   );
                 }
               })}
@@ -87,6 +119,30 @@ export default function Preview() {
                 width={96}
                 height={96}
               />
+              <div className="flex flex-col gap-[10px] justify-start mt-[30px]">
+                {Object.keys(formState).map((key, index) => {
+                  return (
+                    <div key={index} className="text-left">
+                      <h4 className="font-bold text-[16px]">{key}</h4>
+                      <div className="flex flex-col gap-[4px]">
+                        {Object.keys(formState[key]).map(
+                          (element: any, index) => {
+                            return (
+                              <span
+                                key={index}
+                                className="font-normal text-[12px]"
+                              >
+                                {element}:{" "}
+                                {JSON.stringify(formState[key][element])}
+                              </span>
+                            );
+                          }
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
             </div>
           )}
         </div>

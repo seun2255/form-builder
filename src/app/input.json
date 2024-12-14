@@ -5,48 +5,60 @@
       "elements": [
         {
           "id": 1,
-          "description": "John Doe",
+          "description": "Your fullname",
           "title": "Name",
-          "type": "input"
+          "inputs": [
+            { "type": "text", "name": "Surname" },
+            { "type": "text", "name": "Firstname" },
+            { "type": "text", "name": "Lastname" }
+          ]
         },
         {
           "id": 2,
           "description": "How old are you",
           "title": "Age",
-          "type": "input"
+          "inputs": [{ "type": "number", "name": "age" }]
         },
         {
           "id": 3,
-          "description": "something avenue",
+          "description": "Your address",
           "title": "Address",
-          "type": "upload input"
+          "inputs": [
+            { "type": "text", "name": "address" },
+            { "type": "file", "name": "proof of address" }
+          ]
         }
-      ],
-      "open": false
+      ]
     },
     {
       "step": "Professional Informtion",
       "elements": [
         {
           "id": 1,
-          "description": "John Doe",
+          "description": "Your fullname",
           "title": "Name",
-          "type": "input"
+          "inputs": [
+            { "type": "text", "name": "Surname" },
+            { "type": "text", "name": "Firstname" },
+            { "type": "text", "name": "Lastname" }
+          ]
         },
         {
           "id": 2,
           "description": "How old are you",
           "title": "Age",
-          "type": "input"
+          "inputs": [{ "type": "number", "name": "age" }]
         },
         {
           "id": 3,
-          "description": "something avenue",
+          "description": "Your address",
           "title": "Address",
-          "type": "upload input"
+          "inputs": [
+            { "type": "text", "name": "address" },
+            { "type": "file", "name": "proof of address" }
+          ]
         }
-      ],
-      "open": false
+      ]
     },
     {
       "step": "Questions",
@@ -55,25 +67,32 @@
           "id": 1,
           "description": "cook",
           "title": "Do you cook?",
-          "type": "selection",
-          "values": ["yes", "no"]
+          "inputs": [
+            {
+              "type": "selection",
+              "name": "Do you cook",
+              "values": ["rarely", "no", "often"]
+            }
+          ]
         },
         {
           "id": 2,
           "description": "party",
-          "title": "do you party?",
-          "type": "selection",
-          "values": ["yes", "no"]
-        },
-        {
-          "id": 3,
-          "description": "dance",
-          "title": "do you dance?",
-          "type": "selection",
-          "values": ["rarely", "no", "often"]
+          "title": "Health",
+          "inputs": [
+            {
+              "type": "selection",
+              "name": "Do you exercise",
+              "values": ["yes", "no"]
+            },
+            {
+              "type": "selection",
+              "name": "Do you eat healthy",
+              "values": ["yes", "no"]
+            }
+          ]
         }
-      ],
-      "open": false
+      ]
     }
   ]
 }

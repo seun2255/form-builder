@@ -1,18 +1,39 @@
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface Input {
   title: string;
+  element?: string;
   values: string[];
+  value?: string;
+  handleChange?: any;
 }
 
-export default function SelectionInput({ title, values }: Input) {
-  const [selected, setSelected] = useState(values[0]);
+export default function SelectionInput({
+  title,
+  element,
+  values,
+  value,
+  handleChange,
+}: Input) {
+  const [selected, setSelected] = useState(value ? values[0] : value);
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    setSelected(value);
+  }, [value]);
+
+  const handleSelect = (value: string) => {
+    if (element && handleChange) {
+      handleChange(element, title, value);
+    } else {
+      setSelected(value);
+    }
+  };
 
   return (
     <div
-      className="text-[18px] font-normal py-[10px] px-[10px] bg-[#EEEEEE] w-full flex justify-between relative"
+      className="text-[18px] font-normal py-[10px] px-[10px] bg-[#EEEEEE] w-full max-w-[22rem] flex justify-between relative"
       onClick={() => setOpen(!open)}
     >
       {selected}
@@ -27,7 +48,7 @@ export default function SelectionInput({ title, values }: Input) {
                 className={`text-[18px] font-normal py-[10px] px-[10px] ${
                   value === selected ? "bg-[#a4a0a0]" : "bg-[#EEEEEE]"
                 } w-full`}
-                onClick={() => setSelected(value)}
+                onClick={() => handleSelect(value)}
               >
                 {value}
               </button>

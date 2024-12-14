@@ -10,7 +10,11 @@ function rearrangeElements(elements: any[]): any[] {
   const uploadInputElements: any[] = [];
 
   elements.forEach((element) => {
-    if (element.type === "upload input") {
+    const fileItems = element.inputs.filter(
+      (input: any) => input.type === "file"
+    );
+
+    if (fileItems.length > 0) {
       uploadInputElements.push(element);
     } else {
       inputElements.push(element);
