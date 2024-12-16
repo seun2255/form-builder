@@ -94,7 +94,7 @@ export default function CentralView() {
                         <textarea
                           title={item.name}
                           placeholder={item.hint ? item.hint : ""}
-                          className="text-[18px] font-normal py-[10px] px-[10px] bg-[#EEEEEE] w-full max-w-[24rem] min-h-[100px] resize-none"
+                          className="text-[18px] font-normal py-[10px] px-[10px] bg-[#EEEEEE] w-full min-h-[100px] resize-none"
                         />
                       )}
                       {item.type === "selection" && (

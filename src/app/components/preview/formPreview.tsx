@@ -115,7 +115,7 @@ export default function FormPreview({
                             ? form[step][element.title][item.name]
                             : ""
                         }
-                        className="text-[18px] font-normal py-[10px] px-[10px] bg-[#EEEEEE] w-full max-w-[24rem] min-h-[100px] resize-none"
+                        className="text-[18px] font-normal py-[10px] px-[10px] bg-[#EEEEEE] w-full min-h-[100px] resize-none"
                         onChange={(e) =>
                           handleChange(element.title, item.name, e.target.value)
                         }
