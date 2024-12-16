@@ -41,6 +41,7 @@ const initialState = {
   ],
   step: null,
   showQuestionModal: false,
+  showPreview: false,
 };
 
 interface Display {
@@ -82,6 +83,9 @@ export const appSlice = createSlice({
     setQuestionModal: (state: any, action: setModal) => {
       state.showQuestionModal = action.payload.display;
     },
+    setPreview: (state: any, action: setModal) => {
+      state.showPreview = action.payload.display;
+    },
   },
 });
 
@@ -90,6 +94,7 @@ export const {
   setStepDisplay,
   setStepExports,
   setQuestionModal,
+  setPreview,
   setStepCustomQuestions,
 } = appSlice.actions;
 

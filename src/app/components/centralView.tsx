@@ -80,12 +80,21 @@ export default function CentralView() {
                       <h4 className="text-[16px] leading-[19.36px] font-normal mb-[3px] w-fit">
                         {item.type !== "file" ? item.name : ""}
                       </h4>
-                      {item.type !== "file" && item.type !== "selection" && (
-                        <input
+                      {item.type !== "file" &&
+                        item.type !== "selection" &&
+                        item.type !== "textarea" && (
+                          <input
+                            title={item.name}
+                            placeholder={item.hint ? item.hint : ""}
+                            type={item.type}
+                            className="text-[18px] font-normal py-[10px] px-[10px] bg-[#EEEEEE] w-full max-w-[20rem]"
+                          />
+                        )}
+                      {item.type === "textarea" && (
+                        <textarea
                           title={item.name}
-                          placeholder=""
-                          type={item.type}
-                          className="text-[18px] font-normal py-[10px] px-[10px] bg-[#EEEEEE] w-full max-w-[20rem]"
+                          placeholder={item.hint ? item.hint : ""}
+                          className="text-[18px] font-normal py-[10px] px-[10px] bg-[#EEEEEE] w-full max-w-[24rem] min-h-[100px] resize-none"
                         />
                       )}
                       {item.type === "selection" && (
@@ -96,12 +105,6 @@ export default function CentralView() {
                       )}
                       {item.type === "file" && (
                         <div className="h-fit flex gap-[20px]">
-                          {/* <input
-                          title={item.name}
-                          placeholder=""
-                          type="text"
-                          className="text-[18px] font-normal py-[10px] px-[10px] bg-[#EEEEEE] w-1/2 h-fit"
-                        /> */}
                           <div className="w-full flex flex-col pt-[1.2rem]">
                             <input
                               type="file"

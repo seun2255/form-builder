@@ -1,7 +1,8 @@
 "use client";
 
-import FormPreview from "../components/formPreview";
-import { useSelector } from "react-redux";
+import FormPreview from "./formPreview";
+import { useSelector, useDispatch } from "react-redux";
+import { setPreview } from "@/app/redux/app";
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -9,6 +10,7 @@ import { json } from "stream/consumers";
 
 export default function Preview() {
   const { exports } = useSelector((state: any) => state.app);
+  const dispatch = useDispatch();
   const [step, setStep] = useState(0);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -24,9 +26,18 @@ export default function Preview() {
       setUploading(true);
       setTimeout(() => {
         setUploading(false);
+        console.log("Submitted Form: ", formState);
       }, 5000);
     } else {
       setStep(step + 1);
+    }
+  };
+
+  const handleBack = () => {
+    if (step === 0) {
+      dispatch(setPreview({ display: false }));
+    } else {
+      setStep(step - 1);
     }
   };
 
@@ -51,7 +62,7 @@ export default function Preview() {
   }, []);
 
   return (
-    <div className="w-screen h-screen bg-[#D9D9D9] flex items-center justify-center">
+    <div className="w-screen h-screen bg-[#D9D9D9] flex items-center justify-center absolute top-0 left-0">
       <div className="w-[1068px] h-[772px] rounded-[20px] bg-white border-[1px] border-[#CCCCCC] flex p-[18px] pr-[50px] gap-[100px]">
         <div className="w-[30%] h-full rounded-[20px] bg-[#EEEEEE] pl-[25px] pt-[20px] text-[16px] leading-[19.36px] font-bold">
           Lorem ipsum
@@ -73,21 +84,19 @@ export default function Preview() {
                 }
               })}
               <div className="w-full flex justify-between absolute bottom-0 pb-[50px]">
-                <Link href={step === 0 ? "/" : ""}>
-                  <button
-                    type="button"
-                    className="w-fit text-[12px] leading-[14.52px] font-bold py-[12px] px-[25px] rounded-[30px] border-[1px] border-[#CCCCCC] flex gap-[8px]"
-                    onClick={() => setStep(step - 1)}
-                  >
-                    <Image
-                      src={"/images/back.svg"}
-                      alt="back icon"
-                      width={12}
-                      height={12}
-                    />{" "}
-                    Go Back
-                  </button>
-                </Link>
+                <button
+                  type="button"
+                  className="w-fit text-[12px] leading-[14.52px] font-bold py-[12px] px-[25px] rounded-[30px] border-[1px] border-[#CCCCCC] flex gap-[8px]"
+                  onClick={handleBack}
+                >
+                  <Image
+                    src={"/images/back.svg"}
+                    alt="back icon"
+                    width={12}
+                    height={12}
+                  />{" "}
+                  Go Back
+                </button>
                 <button
                   type="button"
                   className="w-fit text-[12px] leading-[14.52px] font-bold py-[12px] px-[25px] rounded-[30px] text-white bg-black"

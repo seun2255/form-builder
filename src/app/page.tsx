@@ -6,9 +6,12 @@ import RightColumn from "./components/rightColumn";
 import CentralView from "./components/centralView";
 import CustomQuestionModal from "./components/customQuestionModal";
 import { useSelector } from "react-redux";
+import Preview from "./components/preview";
 
 export default function Home() {
-  const { step, showQuestionModal } = useSelector((state: any) => state.app);
+  const { step, showQuestionModal, showPreview } = useSelector(
+    (state: any) => state.app
+  );
 
   return (
     <div className="w-screen h-screen flex flex-col">
@@ -29,6 +32,7 @@ export default function Home() {
         )}
       </div>
       {showQuestionModal && <CustomQuestionModal />}
+      {showPreview && <Preview />}
     </div>
   );
 }

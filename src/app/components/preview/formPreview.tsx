@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Image from "next/image";
-import { rearrangeElements } from "../utils/sort";
-import SelectionInput from "./selectionInput";
+import { rearrangeElements } from "../../utils/sort";
+import SelectionInput from "../selectionInput";
 
 const h3Texts = [
   "Lets start with your personal informations",
@@ -40,7 +40,6 @@ export default function FormPreview({
 
   const handleChange = (element: string, name: string, value: string) => {
     var formState = { ...form };
-    console.log("Formstate: ", formState);
     formState[step][element][name] = value;
     setForm(formState);
   };
@@ -82,17 +81,39 @@ export default function FormPreview({
                     <h4 className="text-[16px] leading-[19.36px] font-normal mb-[3px] w-fit">
                       {item.type !== "file" ? item.name : ""}
                     </h4>
-                    {item.type !== "file" && item.type !== "selection" && (
-                      <input
+                    {item.type !== "file" &&
+                      item.type !== "selection" &&
+                      item.type !== "textarea" && (
+                        <input
+                          title={item.name}
+                          placeholder={item.hint ? item.hint : ""}
+                          type={item.type}
+                          value={
+                            form[step]?.[element.title]?.[item.name]
+                              ? form[step][element.title][item.name]
+                              : ""
+                          }
+                          className="text-[18px] font-normal py-[10px] px-[10px] bg-[#EEEEEE] w-full max-w-[17rem]"
+                          onChange={(e) =>
+                            handleChange(
+                              element.title,
+                              item.name,
+                              e.target.value
+                            )
+                          }
+                        />
+                      )}
+
+                    {item.type === "textarea" && (
+                      <textarea
                         title={item.name}
-                        placeholder=""
-                        type={item.type}
+                        placeholder={item.hint ? item.hint : ""}
                         value={
                           form[step]?.[element.title]?.[item.name]
                             ? form[step][element.title][item.name]
                             : ""
                         }
-                        className="text-[18px] font-normal py-[10px] px-[10px] bg-[#EEEEEE] w-full max-w-[17rem]"
+                        className="text-[18px] font-normal py-[10px] px-[10px] bg-[#EEEEEE] w-full max-w-[24rem] min-h-[100px] resize-none"
                         onChange={(e) =>
                           handleChange(element.title, item.name, e.target.value)
                         }
@@ -115,12 +136,6 @@ export default function FormPreview({
 
                     {item.type === "file" && (
                       <div className="h-fit flex gap-[20px]">
-                        {/* <input
-                          title={item.name}
-                          placeholder=""
-                          type="text"
-                          className="text-[18px] font-normal py-[10px] px-[10px] bg-[#EEEEEE] w-1/2 h-fit"
-                        /> */}
                         <div className="w-full flex flex-col pt-[1.2rem]">
                           <input
                             type="file"

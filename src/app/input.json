@@ -24,7 +24,11 @@
           "description": "Your address",
           "title": "Address",
           "inputs": [
-            { "type": "text", "name": "address" },
+            {
+              "type": "text",
+              "name": "address",
+              "hint": "your current residence"
+            },
             { "type": "file", "name": "proof of address" }
           ]
         }
