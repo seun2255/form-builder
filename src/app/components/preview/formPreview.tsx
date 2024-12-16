@@ -139,7 +139,7 @@ export default function FormPreview({
                         <div className="w-full flex flex-col pt-[1.2rem]">
                           <input
                             type="file"
-                            id={item.name}
+                            id={`preview-${item.name}`}
                             title={item.name}
                             disabled={
                               form[step]?.[element.title]?.[item.name]?.length >
@@ -151,7 +151,7 @@ export default function FormPreview({
                             }
                           />
                           <label
-                            htmlFor={item.name}
+                            htmlFor={`preview-${item.name}`}
                             className="w-full border-dashed border-[1px] border-black flex gap-[8px] justify-center items-center py-[10px] mb-[11px] cursor-pointer"
                           >
                             Upload{" "}
