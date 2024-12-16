@@ -63,13 +63,13 @@ export default function Preview() {
 
   return (
     <div className="w-screen h-screen bg-[#D9D9D9] flex items-center justify-center absolute top-0 left-0">
-      <div className="w-[1068px] h-[772px] rounded-[20px] bg-white border-[1px] border-[#CCCCCC] flex p-[18px] pr-[50px] gap-[100px]">
-        <div className="w-[30%] h-full rounded-[20px] bg-[#EEEEEE] pl-[25px] pt-[20px] text-[16px] leading-[19.36px] font-bold">
+      <div className="w-[1068px] min-h-[772px] rounded-[20px] bg-white border-[1px] border-[#CCCCCC] flex p-[18px] pr-[50px] gap-[100px]">
+        <div className="w-[30%] min-h-full rounded-[20px] bg-[#EEEEEE] pl-[25px] pt-[20px] text-[16px] leading-[19.36px] font-bold">
           Lorem ipsum
         </div>
-        <div className="flex-1 w-full h-full pt-[100px] flex overflow-hidden relative">
+        <div className="flex-1 min-h-[772px] w-full pt-[100px] relative">
           {!formSubmitted && (
-            <>
+            <div className="h-full w-full flex flex-col">
               {exports.map((form: any, index: number) => {
                 if (step === index) {
                   return (
@@ -83,7 +83,7 @@ export default function Preview() {
                   );
                 }
               })}
-              <div className="w-full flex justify-between absolute bottom-0 pb-[50px]">
+              <div className="w-full flex justify-between mt-auto pb-[50px] self-end">
                 <button
                   type="button"
                   className="w-fit text-[12px] leading-[14.52px] font-bold py-[12px] px-[25px] rounded-[30px] border-[1px] border-[#CCCCCC] flex gap-[8px]"
@@ -105,7 +105,7 @@ export default function Preview() {
                   Next Step
                 </button>
               </div>
-            </>
+            </div>
           )}
           {formSubmitted && uploading && (
             <div className="w-full h-full flex-shrink-0 flex flex-col items-center justify-center">

@@ -58,7 +58,7 @@ export default function FormPreview({
   };
 
   return (
-    <div className="w-full h-full px-[25px] pt-[10px] flex-shrink-0 flex flex-col">
+    <div className="w-full h-fit px-[25px] pt-[10px] flex-shrink-0 flex flex-col">
       <span className="text-[12px] text-[#CCCCCC] font-normal leading-[14.52px] mb-[6px]">
         PAGE {page + 1} OF 3
       </span>
@@ -68,7 +68,9 @@ export default function FormPreview({
       <h3 className="text-[16px] text-[#CCCCCC] font-normal leading-[19.36px] mb-[28px]">
         {h3Texts[page]}
       </h3>
-      <div className={`w-full h-fit mb-[200px] grid grid-cols-1 gap-[15px]`}>
+      <div
+        className={`w-full h-fit min-mb mb-[40px] grid grid-cols-1 gap-[15px]`}
+      >
         {fields.map((element, index) => {
           return (
             <div
